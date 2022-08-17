@@ -1,4 +1,4 @@
-name: Kaali-Linux
+name: Mukesh-Server
 
 on:
     push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-       - name: checkout kaali-linux
+       - name: checkout Mukesh-Server
          uses: actions/checkout@main
        
        - uses: styfle/cancel-workflow-action@0.9.0
@@ -17,7 +17,7 @@ jobs:
          with:
             all_but_latest: true
             access_token: ${{ github.token }}
-       - name: initialization kaali-linux
+       - name: initialization Mukesh-Server
          continue-on-error: true
          run: |
            git config --global user.name ${{ secrets.GIT_NAME }}
@@ -28,19 +28,19 @@ jobs:
          continue-on-error: true
          run: |
            git clone https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} kaali
-       - name: running kaali-linux server
+       - name: running Mukesh-Server server
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           cd kaali
-           docker build . -t kaali
-           docker run kaali
-       - name: loop kaali-linux server
+           cd Mukesh
+           docker build . -t Mukesh
+           docker run Mukesh
+       - name: loop Mukesh-Server server
          continue-on-error: true
          run: |
               git clone https://github.com/${GITHUB_REPOSITORY} loop
               cd loop || exit 1
               echo $(date -u +%T%P) >> loop.txt
               git add loop.txt
-              git commit -m "Kaali-Linux : Loop $(date -u +%D-%T%P)"
-              git push -q https://${{ secrets.GIT_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:kaali-linux
+              git commit -m "Mukesh-Server : Loop $(date -u +%D-%T%P)"
+              git push -q https://${{ secrets.GIT_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:Mukesh-Server
