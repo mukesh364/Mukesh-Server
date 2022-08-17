@@ -32,9 +32,9 @@ jobs:
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           cd Mukesh
-           docker build . -t Mukesh
-           docker run Mukesh
+           cd Mukesh-Server
+           docker build . -t Mukesh-Server
+           docker run Mukesh-Server
        - name: loop Mukesh-Server server
          continue-on-error: true
          run: |
